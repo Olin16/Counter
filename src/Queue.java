@@ -19,15 +19,28 @@ public class Queue implements DataStructure{
 
     @Override
     public Object get() {
-        count = 2;
-        if (count < 100) {
-            nextGet = count;
-            count = count + 1;
+        if (count > 0) {
+
             Object obj = objects[nextGet];
+            objects[nextGet] = "empty";
+            nextGet++;
+            count = count - 1;
+            return obj;
         } else {
             System.out.println("get Over 100!!");
             return false;
         }
-        return null;
     }
+
+    public String toString() {
+        String out = "[";
+        for (int i = 0; i < 100; i = i + 1) {
+            out = out + " " + objects[i];
+        }
+        out = out + "]\n";
+        out = out + "count " + count + " nextGet " + nextGet + " nextPut " + nextPut;
+        return out;
+    }
+
+
 }
